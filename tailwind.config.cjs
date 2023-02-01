@@ -2,7 +2,13 @@
 module.exports = {
   content: ["./src/components/**/*.tsx"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'light-bg': '#f7f8fb'
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms')
+  ],
 }
