@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import { useSentence } from "../../hooks";
 import { Controls } from "./Controls";
 import { OriginalText } from "./OriginalText";
 import { Output } from "./Output";
@@ -9,11 +10,12 @@ interface Props {
 }
 
 export const SentenceBox: FC<Props> = () => {
+	const { setInput, setOutput } = useSentence("Hello world");
 	return (
 		<article>
 			<OriginalText />
-			<Textarea />
-			<Output />
+			<Textarea setInput={setInput} />
+			<Output setOutput={setOutput} />
 			<Controls />
 		</article>
 	);
