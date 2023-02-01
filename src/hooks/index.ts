@@ -1,0 +1,1 @@
+export { useSentence } from './useSentence';
