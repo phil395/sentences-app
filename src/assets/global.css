@@ -4,12 +4,28 @@
 
 @layer base {
 	html {
-		@apply bg-light-bg;
+		@apply bg-light-bg text-slate-700;
 	}
 }
 
 @layer components {
 	.container {
 		max-width: theme(screens.lg);
+	}
+
+	.app-outline {
+		@apply outline outline-2 outline-offset-2 outline-cyan-600;
+	}
+
+	.btn-base {
+		@apply py-1 px-4 m-2 rounded-md border focus:app-outline;
+	}
+
+	.btn {
+		@apply btn-base border-transparent text-white bg-cyan-600  active:bg-cyan-700;
+	}
+
+	.btn-outline {
+		@apply btn-base border-cyan-600 text-cyan-600 active:bg-slate-200;
 	}
 }
