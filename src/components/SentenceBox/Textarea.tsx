@@ -16,8 +16,8 @@ export const Textarea: FC<Props> = () => {
 	}, []);
 
 	return (
-		<textarea ref={area}>
-
-		</textarea>
+		<div className="pt-2 rounded-t-xl shadow border border-slate-200 bg-white focus-within:app-outline">
+			<textarea ref={area} rows={1} className="w-full py-2 px-3 bg-white border-none focus:ring-0"></textarea>
+		</div>
 	);
 };
