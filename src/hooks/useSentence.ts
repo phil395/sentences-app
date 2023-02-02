@@ -106,6 +106,33 @@ const fillOutput = (
 	node.append(...elements);
 };
 
+const makeKeyHandler = (actions: ISentenceActions) => {
+	return (e: KeyboardEvent) => {
+		if (e.altKey) {
+			switch (e.key) {
+				case 'm':
+				case 'M':
+					return actions.changeMode();
+				case 's':
+				case 'S':
+					return actions.show();
+				case 'r':
+				case 'R':
+					return actions.reset();
+				case 'c':
+				case 'C':
+					return actions.check();
+				default:
+					break;
+			}
+		}
+		if (e.key === 'Enter') {
+			e.preventDefault();
+			actions.check();
+		}
+	};
+};
+
 
 export const useSentence = (sentence: string) => {
 	const [input, setInput] = useState<HTMLTextAreaElement | null>(null);
@@ -113,6 +140,8 @@ export const useSentence = (sentence: string) => {
 
 	const originWords = parseWords(sentence, 'origin');
 	const loverCaseWords = parseWords(sentence, 'lover');
+
+	const [mod, setMod] = useState<'auto' | 'manual'>('auto');
 
 	setValidity(input, output, false); // init
 
@@ -139,24 +168,25 @@ export const useSentence = (sentence: string) => {
 			cleanupOutput(output);
 			setValidity(input, output, false);
 		},
+		changeMode: () => {
+			setMod(m => m === 'auto' ? 'manual' : 'auto');
+		},
 		goToYandex: () => openWindow('yandex', sentence)
 	};
 
-	const onKeyDown = (e: KeyboardEvent) => {
-		if (e.key === 'Enter') {
-			e.preventDefault();
-		}
-	};
 
 	useEffect(() => {
 		if (!input) return;
-		input.addEventListener('input', treat);
+		const onKeyDown = makeKeyHandler(actions);
 		input.addEventListener('keydown', onKeyDown);
+		if (mod === 'auto') {
+			input.addEventListener('input', treat);
+		}
 		return () => {
-			input.removeEventListener('input', treat);
 			input.removeEventListener('keydown', onKeyDown);
+			input.removeEventListener('input', treat);
 		};
-	}, [input]);
+	}, [input, mod]);
 
 	return { setInput, setOutput, actions };
 };

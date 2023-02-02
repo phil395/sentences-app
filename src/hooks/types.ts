@@ -3,4 +3,5 @@ export interface ISentenceActions {
 	show: () => void;
 	reset: () => void;
 	goToYandex: () => void;
+	changeMode: () => void;
 }
