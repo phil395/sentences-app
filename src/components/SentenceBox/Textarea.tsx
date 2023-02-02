@@ -25,8 +25,9 @@ export const Textarea: FC<Props> = ({ setInput }) => {
 			<textarea
 				ref={setRef}
 				rows={1}
+				placeholder="Enter your translation"
 				spellCheck='true'
-				className="w-full py-2 px-3 bg-white border-none focus:ring-0"
+				className="w-full py-2 px-3 bg-white border-none focus:ring-0 valid:text-green-900"
 			>
 			</textarea>
 		</div>
