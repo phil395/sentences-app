@@ -29,3 +29,13 @@
 		@apply btn-base border-cyan-600 text-cyan-600 active:bg-slate-200;
 	}
 }
+
+/* Next classes are set dynamically, so Tailwind does not include this in the build. */
+
+.valid {
+		@apply bg-[#e5f9e0] text-green-900;
+}
+
+.cta {
+	@apply cursor-pointer hover:font-semibold transition-all duration-300;
+}
