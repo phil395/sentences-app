@@ -32,6 +32,10 @@
 		@apply outline outline-2 outline-offset-2 outline-cyan-600;
 	}
 
+	.app-outline-light {
+		@apply outline outline-2 outline-offset-2 outline-slate-200;
+	}
+
 	.btn-base {
 		@apply py-1 px-4 m-2 rounded-md border focus:app-outline;
 	}
